@@ -1,0 +1,31 @@
+class Solution {
+public:
+    Solution(vector<int>& nums) {
+        back_ = nums;
+    }
+    
+    vector<int> reset() {
+        return back_;
+    }
+    
+    // Knuth algorithm
+    // question: why can't reduce from size() - 1 to 0
+    vector<int> shuffle() {
+        vector<int> res = back_;
+        
+        for(int i = 0; i < back_.size(); ++i) {
+            int r = i + rand() % (back_.size() - i);
+            swap(res[i], res[r]);
+        }
+        return res;
+    }
+private:
+    vector<int> back_;
+};
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution* obj = new Solution(nums);
+ * vector<int> param_1 = obj->reset();
+ * vector<int> param_2 = obj->shuffle();
+ */
