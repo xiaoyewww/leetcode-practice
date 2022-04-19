@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<int> shortestToChar(string s, char c) {
+        std::vector<int> res(s.size());
+        // two index to point left and right of s[i]
+        // r can be 0, and don't worry about the type of size_t
+        int l = -1, r = -1;
+        for(int i = 0; i < s.size(); ++i) {
+            // NOTICE: s.size() type is size_t(unsigned long long) which cannot be compared with int
+            int s_length = s.size();
+
+            // move left index
+            if(s[i] == c) {
+                l = i;
+            }
+
+            // move right index
+            while(r < i) {
+                if(r >= s_length) break;
+                ++r;
+            }
+            while(r < s_length) {
+                if(s[r] == c) break;
+                ++r;
+            }
+
+            // judge boundary
+            int left = l == -1 ? INT_MAX : abs(i-l);
+            int right = r == s_length ? INT_MAX : abs(i-r);
+            res[i] = std::min(left, right);
+        }
+        return res;
+    }
+};
