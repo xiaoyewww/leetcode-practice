@@ -1,1 +1,4 @@
-# one-question-per-day-leetcode
+# leetcode practice (C++)
+
+Update from time to time~
+
